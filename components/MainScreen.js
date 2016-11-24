@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import {
 	View,
 	Text,
@@ -14,7 +14,7 @@ class MainScreen extends Component {
 					<Text style={styles.title}>Awesome Company Support</Text>
 				</View>
 				<View style={styles.buttonContainer}>
-					<TouchableOpacity style={styles.button}>
+					<TouchableOpacity style={styles.button} onPress={this.props.getHelpPressHandler}>
 						<Text style={styles.buttonText}>Get Help</Text>
 					</TouchableOpacity>
 				</View>
@@ -22,11 +22,15 @@ class MainScreen extends Component {
 		)
 	}
 }
+MainScreen.propTypes = {
+	getHelpPressHandler: PropTypes.func.isRequired,
+}
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'space-around',
+		backgroundColor: '#68b8db',
 	},
 	titleContainer: {
 		flex: 1,
