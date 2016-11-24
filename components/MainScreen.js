@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {
 	View,
 	Text,
-	TouchOpacity,
+	TouchableOpacity,
 	StyleSheet,
 } from 'react-native'
 
@@ -13,11 +13,11 @@ class MainScreen extends Component {
 				<View style={styles.titleContainer}>
 					<Text style={styles.title}>Awesome Company Support</Text>
 				</View>
-			</View>
-			<View style={styles.buttonContainer}>
-				<TouchableOpacity style={styles.button}>
-					<Text style={styles.buttonText}>Get Help</Text>
-				</TouchableOpacity>
+				<View style={styles.buttonContainer}>
+					<TouchableOpacity style={styles.button}>
+						<Text style={styles.buttonText}>Get Help</Text>
+					</TouchableOpacity>
+				</View>
 			</View>
 		)
 	}
@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
 		color: '#ffffff',
 		fontSize: 60,
 		fontWeight: '200',
-		textAligh: 'center',
+		textAlign: 'center',
 		backgroundColor: 'rgba(0,0,0,0)',
 	},
 })
+export default MainScreen
