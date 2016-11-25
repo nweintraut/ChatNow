@@ -38,3 +38,9 @@ export function sendMessage(timestamp) {
 		})
 	}
 }
+export function receivedMessage(message) {
+	return {
+		type: 'RECEIVED_MESSAGE',
+		message,
+	}
+}
