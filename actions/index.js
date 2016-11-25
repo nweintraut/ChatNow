@@ -18,10 +18,23 @@ export function updateComposeMessage(message) {
 }
 export function sendMessage(timestamp) {
 	return (dispatch, getState) => {
-		dispatch({
-			type: 'SEND_MESSAGE',
+		const message = {
 			message: getState().composingMessage,
 			timestamp,
+			customerName: getState().name,
+			accountNumber: getState().accountNumber,
+		}
+
+		dispatch({
+			type: 'SEND_MESSAGE',
+			...message,
+		})
+		fetch('http://localhost:8080/messages', {
+			method: 'POST',
+			headers:  new Headers({
+				'Content-Type': 'application/json'
+			}),
+			body: JSON.stringify(message),
 		})
 	}
 }
