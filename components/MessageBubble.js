@@ -7,7 +7,7 @@ import {
 
 const MessageBubble = (props) => (
 	<View style={[styles.bubble, props.isOwnMessage && styles.ownBubble]} >
-		<Text style={[styles.messageText, props.isOwnMessage && styles.ownMessagText]}>
+		<Text style={[styles.messageText, props.isOwnMessage && styles.ownMessageText]}>
 			{props.message}
 		</Text>
 	</View>

@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react'
 import {
 	View,
 	Text,
+	ScrollView,
 	TextInput,
 	TouchableOpacity,
 	Platform,
@@ -17,9 +18,9 @@ const ChatScreen = (props) => {
 	const bubbles = props.messages.map((m,i) => <MessageBubble {...m} key={i} />)
 	return (
 		<View behavior="padding" style={styles.container} >
-			<View style={styles.bubbleContainer} >
+			<ScrollView style={styles.bubbleContainer} >
 				{bubbles}
-			</View>
+			</ScrollView>
 			<View style={styles.messageBoxContainer}>
 			<TextInput 
 				style={styles.messageBox} 
