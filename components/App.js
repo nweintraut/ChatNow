@@ -7,14 +7,14 @@ import {
 
 import routes from '../routes'
 import MainScreen from './MainScreen'
-import SignInScreen from './SignInScreen'
+import SignInContainer from '../containers/SignInContainer'
 import NavBarRouteMapper from './NavBarRouteMapper'
 
 class App extends Component {
 	_renderScene(route, navigator) {
 		switch(route.name) {
 			case 'SignInScreen':
-				return <SignInScreen />
+				return <SignInContainer />
 			case 'MainScreen':
 				return <MainScreen getHelpPressHandler={() => {
 					navigator.push(routes.signIn)
