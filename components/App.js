@@ -9,13 +9,13 @@ import routes from '../routes'
 import MainScreen from './MainScreen'
 import SignInContainer from '../containers/SignInContainer'
 import NavBarRouteMapper from './NavBarRouteMapper'
-import ChatScreen from './ChatScreen'
+import ChatContainer from '../containers/ChatContainer'
 
 class App extends Component {
 	_renderScene(route, navigator) {
 		switch(route.name) {
 			case 'ChatScreen':
-				return <ChatScreen />
+				return <ChatContainer />
 			case 'SignInScreen':
 				return <SignInContainer />
 			case 'MainScreen':

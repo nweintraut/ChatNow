@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 import {
 	View,
 	Text,
@@ -25,7 +25,12 @@ const ChatScreen = (props) => {
 				{bubbles}
 			</View>
 			<View style={styles.messageBoxContainer}>
-			<TextInput style={styles.messageBox} />
+			<TextInput 
+				style={styles.messageBox} 
+				value={props.composingMessage}
+				onChangeText={props.onComposeMessageUpdate}
+				returnKeyType="send"
+			/>
 			<TouchableOpacity>
 				<Text style={styles.sendButton}>Send</Text>
 			</TouchableOpacity>
@@ -33,6 +38,10 @@ const ChatScreen = (props) => {
 			{spacer}
 		</View>
 	)
+}
+ChatScreen.propTypes = {
+	composingMessage: PropTypes.string,
+	onComposeMessageUpdate: PropTypes.func.isRequired,
 }
 const styles = StyleSheet.create({
 	container: {

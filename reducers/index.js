@@ -18,10 +18,25 @@ function accountNumber(state = '', action) {
 			return state
 	}
 }
-
+function composingMessage(state = '', action) {
+	switch(action.type) {
+		case 'UPDATE_COMPOSE_MESSAGE':
+			return action.message
+		default:
+			return state
+	}
+}
+function message(state = [], action) {
+	switch(action.type) {
+		default:
+			return state
+	}
+}
 const chatNowReducers = combineReducers({
 	name,
 	accountNumber,
+	composingMessage,
+	message,
 })
 
 export default chatNowReducers

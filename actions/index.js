@@ -10,3 +10,9 @@ export function updateAccountNumber(number) {
 		number,
 	}
 }
+export function updateComposeMessage(message) {
+	return {
+		type: 'UPDATE_COMPOSE_MESSAGE',
+		message,
+	}
+}
