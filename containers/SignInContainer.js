@@ -7,7 +7,7 @@ const mapStateToProps = (state) => (
 		accountNumber: state.accountNumber,
 	}
 )
-const mapDispatchToProps = (dispath) => (
+const mapDispatchToProps = (dispatch) => (
 	{
 		onNameUpdate: (value) => {
 			dispatch(updateName(value))
