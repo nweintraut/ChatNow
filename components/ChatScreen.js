@@ -11,14 +11,26 @@ import {
 
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import MessageBubble from './MessageBubble'
-
+let scrollWindow
+let scrollHeight
 const ChatScreen = (props) => {
 
 	const spacer = Platform.OS === 'ios' ? <KeyboardSpacer /> : null
 	const bubbles = props.messages.map((m,i) => <MessageBubble {...m} key={i} />)
 	return (
 		<View behavior="padding" style={styles.container} >
-			<ScrollView style={styles.bubbleContainer} >
+			<ScrollView 
+				style={styles.bubbleContainer} 
+				ref={scrollview => {scrollWindow = scrollview}}
+				onLayout={event => {
+					scrollHeight = event.nativeEvent.layout.height
+				}}
+				onContentSizeChange={(width, height) => {
+					if (scrollHeight < height) {
+						scrollWindow.scrollTo({y: height - scrollHeight})
+					}
+				}}
+				>
 				{bubbles}
 			</ScrollView>
 			<View style={styles.messageBoxContainer}>
