@@ -3,11 +3,11 @@ import {
   AppRegistry,
 } from 'react-native';
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 import App from './components/App'
 import chatNowReducers from './reducers'
-let store = createStore(chatNowReducers)
+let store = createStore(chatNowReducers, applyMiddleware(thunk))
 class ChatNow extends Component {
   render() {
   	console.log('Redux/app state is:', store.getState())

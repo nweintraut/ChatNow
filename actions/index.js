@@ -16,3 +16,12 @@ export function updateComposeMessage(message) {
 		message,
 	}
 }
+export function sendMessage(timestamp) {
+	return (dispatch, getState) => {
+		dispatch({
+			type: 'SEND_MESSAGE',
+			message: getState().composingMessage,
+			timestamp,
+		})
+	}
+}

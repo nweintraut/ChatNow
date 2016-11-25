@@ -12,13 +12,9 @@ import KeyboardSpacer from 'react-native-keyboard-spacer'
 import MessageBubble from './MessageBubble'
 
 const ChatScreen = (props) => {
-	const messages = [
-		{ isOwnMessage: false, message: 'Hi I\'m Alice. How can I hlep you today?'},
-		{ isOwnMessage: true,  message: 'Hello Alice, I wanted to upgrade to the next tier of service'},
-		{ isOwnMessage: false, message: 'Sure thing! I can definitely help you out with that.'}
-	]
+
 	const spacer = Platform.OS === 'ios' ? <KeyboardSpacer /> : null
-	const bubbles = messages.map((m,i) => <MessageBubble {...m} key={i} />)
+	const bubbles = props.messages.map((m,i) => <MessageBubble {...m} key={i} />)
 	return (
 		<View behavior="padding" style={styles.container} >
 			<View style={styles.bubbleContainer} >
@@ -29,9 +25,10 @@ const ChatScreen = (props) => {
 				style={styles.messageBox} 
 				value={props.composingMessage}
 				onChangeText={props.onComposeMessageUpdate}
+				onSubmitEditing={props.onSendMessage}
 				returnKeyType="send"
 			/>
-			<TouchableOpacity>
+			<TouchableOpacity onPress={props.onSendMessage}>
 				<Text style={styles.sendButton}>Send</Text>
 			</TouchableOpacity>
 			</View>
@@ -40,8 +37,10 @@ const ChatScreen = (props) => {
 	)
 }
 ChatScreen.propTypes = {
+	messages: PropTypes.array.isRequired,
 	composingMessage: PropTypes.string,
 	onComposeMessageUpdate: PropTypes.func.isRequired,
+	onSendMessage: PropTypes.func.isRequired,
 }
 const styles = StyleSheet.create({
 	container: {
