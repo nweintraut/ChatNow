@@ -4,9 +4,11 @@ import {
 	Text,
 	TextInput,
 	TouchableOpacity,
+	Platform,
 	StyleSheet,
 } from 'react-native'
 
+import KeyboardSpacer from 'react-native-keyboard-spacer'
 import MessageBubble from './MessageBubble'
 
 const ChatScreen = (props) => {
@@ -15,6 +17,7 @@ const ChatScreen = (props) => {
 		{ isOwnMessage: true,  message: 'Hello Alice, I wanted to upgrade to the next tier of service'},
 		{ isOwnMessage: false, message: 'Sure thing! I can definitely help you out with that.'}
 	]
+	const spacer = Platform.OS === 'ios' ? <KeyboardSpacer /> : null
 	const bubbles = messages.map((m,i) => <MessageBubble {...m} key={i} />)
 	return (
 		<View behavior="padding" style={styles.container} >
@@ -27,6 +30,7 @@ const ChatScreen = (props) => {
 				<Text style={styles.sendButton}>Send</Text>
 			</TouchableOpacity>
 			</View>
+			{spacer}
 		</View>
 	)
 }
