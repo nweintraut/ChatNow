@@ -8,7 +8,7 @@ import {
 	Linking,
 	AsyncStorage,
 } from 'react-native'
-
+import {setCustomerInfo} from '../storageManager'
 
 const storageNameKey = '@ChatNow:name'
 const storageAccountNumKey = '@ChatNow:accountNum'
@@ -54,10 +54,7 @@ SignInScreen.propTypes = {
 	navHandler: PropTypes.func.isRequired,
 }
 function goPressHandler(navHandler, name, accountNum) {
-	AsyncStorage.multiSet([
-		[storageNameKey, name],
-		[storageAccountNumKey, accountNum],
-	])
+	setCustomerInfo(name, accountNum)
 		.then(()=> navHandler())
 		.catch(ex=> {
 			console.log('Error storing customer name and account, proceeding anyway. Details: ', ex)
