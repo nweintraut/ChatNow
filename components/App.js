@@ -13,17 +13,24 @@ import ChatContainer from '../containers/ChatContainer'
 import {getCustomerInfo } from '../storageManager'
 
 class App extends Component {
+	constructor(props) {
+		super(props)
+		this._renderScene = this._renderScene.bind(this)
+	}
 	componentDidMount() {
 		getCustomerInfo()
 			.then(data => {
-				console.log('Going to restore from storage: ' + JSON.stringify(data) )
-				this.props.onRehydrateFromLocalStorage(data.name, data.accountNumber)
+				if (data.name && data.accountNumber) {
+					console.log('Going to restore from storage: ' + JSON.stringify(data) )
+					this.props.onRehydrateFromLocalStorage(data.name, data.accountNumber)
+				}
 			})
 			.catch(ex => {
 				console.log("Error retrieving data in App,js " + JSON.stringify(ex))
 			})
 
 	}
+	/* Since now using props, need to bind using constructor */
 	_renderScene(route, navigator) {
 		switch(route.name) {
 			case 'ChatScreen':
@@ -31,6 +38,12 @@ class App extends Component {
 			case 'SignInScreen':
 				return <SignInContainer navHandler={() => {navigator.push(routes.chat)}}/>
 			case 'MainScreen':
+			default:
+				if (this.props.name.length && this.props.accountNumber.length ) {
+					return <MainScreen getHelpPressHandler={() => {
+					navigator.push(routes.chat)
+					}}/>
+				}
 				return <MainScreen getHelpPressHandler={() => {
 					navigator.push(routes.signIn)
 				}}/>
