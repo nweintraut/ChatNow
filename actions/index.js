@@ -44,3 +44,11 @@ export function receivedMessage(message) {
 		message,
 	}
 }
+
+export function rehydrateNameAndAccountNum(name, accountNumber) {
+	return {
+		type: 'REHYDRATE_CUSOMTER_DETAILS',
+		name,
+		number: accountNumber,
+	}
+}

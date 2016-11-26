@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import {
 	Navigator,
 	StyleSheet,
@@ -10,8 +10,20 @@ import MainScreen from './MainScreen'
 import SignInContainer from '../containers/SignInContainer'
 import NavBarRouteMapper from './NavBarRouteMapper'
 import ChatContainer from '../containers/ChatContainer'
+import {getCustomerInfo } from '../storageManager'
 
 class App extends Component {
+	componentDidMount() {
+		getCustomerInfo()
+			.then(data => {
+				console.log('Going to restore from storage: ' + JSON.stringify(data) )
+				this.props.onRehydrateFromLocalStorage(data.name, data.accountNumber)
+			})
+			.catch(ex => {
+				console.log("Error retrieving data in App,js " + JSON.stringify(ex))
+			})
+
+	}
 	_renderScene(route, navigator) {
 		switch(route.name) {
 			case 'ChatScreen':
@@ -42,6 +54,11 @@ class App extends Component {
 	}
 }
 
+App.propTypes = {
+	name: PropTypes.string,
+	accountNumber: PropTypes.string,
+	onRehydrateFromLocalStorage: PropTypes.func.isRequired,
+}
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,

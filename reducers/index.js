@@ -3,6 +3,7 @@ import { combineReducers } from 'redux'
 
 function name(state = '', action) {
 	switch (action.type) {
+		case 'REHYDRATE_CUSOMTER_DETAILS':
 		case 'UPDATE_NAME':
 			return action.name
 		default:
@@ -12,6 +13,7 @@ function name(state = '', action) {
 
 function accountNumber(state = '', action) {
 	switch(action.type) {
+		case 'REHYDRATE_CUSOMTER_DETAILS':
 		case 'UPDATE_ACCOUNT_NUMBER':
 			return action.number
 		default:
